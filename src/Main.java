@@ -1,20 +1,38 @@
 
-import static tasks.Colour.printColor;
-import static tasks.Compare.compareNumbers;
-import static tasks.SumSign.checkSumSign;
-import static tasks.ThreeWords.printThreeWords;
+import tasks.*;
 
 public class Main {
     public static void main(String[] args) {
         // Задача №1
-        printThreeWords();
+        ThreeWords.printThreeWords();
         // Задача №2
-        checkSumSign();
+        SumSign.checkSumSign();
         // Задача №3
-        printColor();
+        СhoiceColour.printColor();
         // Задача №4
-        compareNumbers();
-        //Задача №5
-
+        ValueComparator.compareNumbers();
+        // Задача №5
+        SumChecker.sumInRange(21, 9);
+        // Задача №6
+        NumberChecker.checkNumber(0);
+        // Задача №7
+        SignChecker.checkIfNegative(-1);
+        // Задача №8
+        LinePrinter.printStringMultipleTimes("rabbit", 3);
+        // Задача №9
+        LeapYearDeterminer.checkLeapYear(4);
+        // Задача №10
+        BinaryArrayConverter.binarySwitcher();
+        // Задача №11
+        ArrayFiller.fillArray();
+        // Задача №12
+        ArrayMultiplier.multiplyByTwoIfLessThanSix();
+        // Задача №13
+        ArrayDiagonalFiller.fillDiagonal();
+        // Задача №14
+        ArrayBuilder.createArray(5, 4);
+       /* метод для печати массива
+       printArray(createArray(5, 4));
+        */
     }
 }
