@@ -1,6 +1,6 @@
 package tasks;
 
-public class Compare {
+public class ValueComparator {
     public static void compareNumbers() {
         int a = 4;
         int b = 3;
