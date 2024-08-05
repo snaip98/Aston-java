@@ -6,7 +6,7 @@ public class ArrayFiller {
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
         }
-        /* Вывод массива
+         /*Вывод массива
         for(int index:array){
             System.out.println(index);
         }*/

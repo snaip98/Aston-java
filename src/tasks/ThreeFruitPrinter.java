@@ -1,6 +1,6 @@
 package tasks;
 
-public class ThreeWords {
+public class ThreeFruitPrinter {
     public static void printThreeWords() {
         String[] words = new String[]{"Orange", "Banana", "Apple"};
         for (String i : words) {

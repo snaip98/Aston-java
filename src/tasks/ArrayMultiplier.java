@@ -7,8 +7,8 @@ public class ArrayMultiplier {
         for (int i = 0; i < array.length; i++) {
             array[i] = array[i] < 6 ? array[i] * 2 : array[i];
         }
-        /* Вывод массива
-        for(int index:array){
+        //Вывод массива
+        /*for(int index:array){
             System.out.println(index);
         }*/
     }

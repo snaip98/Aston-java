@@ -1,7 +1,7 @@
 package tasks;
 
-public class ArrayDiagonalFiller {
-    public static void fillDiagonal() {
+public class ArrayDiagonalsFiller {
+    public static void fillDiagonals() {
         int[][] array = new int[4][4];
         for (int i = 0; i < array.length; i++) {
             array[i][i] = 1;// заполняется первая диагональ

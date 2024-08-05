@@ -12,7 +12,8 @@ public class ArrayBuilder {
         return array;
 
     }
-// метод для вывода массива
+
+    // метод для вывода массива
     public static void printArray(int[] arr) {
         System.out.println(Arrays.toString(arr));
     }
