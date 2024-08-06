@@ -13,13 +13,13 @@ public class Main {
         // Задача №4
         ValueComparator.compareNumbers();
         // Задача №5
-        SumChecker.sumInRange(21, 9);
+        SumChecker.sumInRange(20, -11);
         // Задача №6
         SignAnalyzer.checkNegativNumber(-1);
         // Задача №7
-        SignChecker.checkIfNegative(-1);
+        SignChecker.checkIfNegative(0);
         // Задача №8
-        LinePrinter.printStringMultipleTimes("rabbit", 3);
+        LinePrinter.printStringMultipleTimes("rabbit", 2);
         // Задача №9
         LeapYearDeterminer.checkLeapYear(900);
         // Задача №10

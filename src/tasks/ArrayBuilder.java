@@ -1,6 +1,5 @@
 package tasks;
 
-import java.util.Arrays;
 
 public class ArrayBuilder {
     public static int[] createArray(int len, int initialValue) {
@@ -11,7 +10,7 @@ public class ArrayBuilder {
             int[] array = new int[len];
             for (int i = 0; i < array.length; i++) {
                 array[i] = initialValue;
-
+                //System.out.print(array[i] + " ");
             }
             return array;
 
@@ -22,8 +21,5 @@ public class ArrayBuilder {
 
     }
 
-    // метод для вывода массива
-    public static void printArray(int[] arr) {
-        System.out.println(Arrays.toString(arr));
-    }
+
 }
