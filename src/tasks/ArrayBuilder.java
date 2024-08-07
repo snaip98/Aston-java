@@ -8,8 +8,8 @@ public class ArrayBuilder {
                 throw new NegativeArraySizeException("Передайте методу положительное число");
             }
             int[] array = new int[len];
-            for (int i = 0; i < array.length; i++) {
-                array[i] = initialValue;
+            for (int index = 0; index < array.length; index++) {
+                array[index] = initialValue;
                 //System.out.print(array[i] + " ");
             }
             return array;
