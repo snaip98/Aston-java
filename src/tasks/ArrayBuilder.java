@@ -1,6 +1,5 @@
 package tasks;
 
-
 public class ArrayBuilder {
     public static int[] createArray(int len, int initialValue) {
         try {
@@ -18,8 +17,5 @@ public class ArrayBuilder {
             System.out.println("Ошибка: " + e.getMessage());
             return new int[0];
         }
-
     }
-
-
 }
