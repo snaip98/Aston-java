@@ -10,7 +10,7 @@ public class ArrayBuilder {
             int[] array = new int[len];
             for (int index = 0; index < array.length; index++) {
                 array[index] = initialValue;
-                //System.out.print(array[i] + " ");
+                //System.out.print(array[index] + " ");
             }
             return array;
 
