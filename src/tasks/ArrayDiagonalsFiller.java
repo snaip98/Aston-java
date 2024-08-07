@@ -2,17 +2,17 @@ package tasks;
 
 public class ArrayDiagonalsFiller {
     public static void fillDiagonals() {
-        int[][] array = new int[4][4];
-        for (int i = 0; i < array.length; i++) {
-            array[i][i] = 1;// заполняется первая диагональ
-            array[i][array.length - i - 1] = 1; // заполняется вторая диагональ
+        int[][] array = new int[5][5];
+        for (int rowIndex = 0; rowIndex < array.length; rowIndex++) {
+            array[rowIndex][rowIndex] = 1;// заполняется первая диагональ
+            array[rowIndex][array.length - rowIndex - 1] = 1; // заполняется вторая диагональ
 
         }
         // вывод двумерного массива
-        /*for (int i = 0; i < array.length; i++) {
+        /*for (int rowIndex = 0; rowIndex < array.length; rowIndex++) {
 
-            for (int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j] + " ");
+            for (int columnIndex = 0; columnIndex < array[rowIndex].length; columnIndex++) {
+                System.out.print(array[rowIndex][columnIndex] + " ");
             }
             System.out.println();
 
