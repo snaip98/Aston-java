@@ -26,14 +26,15 @@ public class Main {
         persons[4] = new Employee("Разумихин Василий Степанович", "QA Engineer Java", "Razymihin@gmail.com",
                 "80333582607", 1100, 26);
         // метод для вывода массива в консоль
-        for (Employee index : persons) {
+        /*for (Employee index : persons) {
             System.out.println(index);
-        }
+        }*/
     }
 
     public static void saveAttractionsInfo() {
         Park gorkyPark = new Park("Парк Горького");
         gorkyPark.attractionAdd("Колесо обозрения", "с 10:00 до 20:00", 11.5);
-        gorkyPark.printAttraction();
+        // метод для вывода информации в консоль
+        //gorkyPark.printAttraction();
     }
 }
