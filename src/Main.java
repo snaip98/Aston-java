@@ -8,9 +8,8 @@ public class Main {
     }
 
     public static void createEmployee() {
-        Employee employee = new Employee("Акснович Иван Александрович", "QA Automation", "aksnovich.ivan@gmail.com",
-                "80333372258", 500, 26);
-        employee.printEmployeeInfo();
+        new Employee("Акснович Иван Александрович", "QA Automation", "aksnovich.ivan@gmail.com",
+                "80333372258", 500, 26).printEmployeeInfo();
     }
 
     public static void createArrayOfEmployees() {
@@ -26,9 +25,9 @@ public class Main {
         persons[4] = new Employee("Разумихин Василий Степанович", "QA Engineer Java", "Razymihin@gmail.com",
                 "80333582607", 1100, 26);
         // метод для вывода массива в консоль
-        /*for (Employee index : persons) {
-            System.out.println(index);
-        }*/
+        for (Employee person : persons) {
+            System.out.println(person);
+        }
     }
 
     public static void saveAttractionsInfo() {
