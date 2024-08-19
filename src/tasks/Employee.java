@@ -27,6 +27,6 @@ public class Employee {
     }
 
     public String toString() {
-        return fullName + position + email + phoneNumber + salary + " " + yearsOld;
+        return "ФИО: " + fullName + ", " + "Должность: " + position + ", " + "Email: " + email + ", " + "Номер телефона: " + phoneNumber + ", " + "Зарплата: " + salary + " руб, " + "Возраст: " + yearsOld+" лет.";
     }
 }

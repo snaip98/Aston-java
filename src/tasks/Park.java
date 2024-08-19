@@ -59,7 +59,7 @@ public class Park {
         }
 
         public String toString() {
-            return attractionName + attractionOpenTime + ticketCost;
+            return "Название: " + attractionName + ", " + " Время работы: " + attractionOpenTime + ", " + " Стоимость билетов: " + ticketCost + " руб. ";
         }
     }
 }
