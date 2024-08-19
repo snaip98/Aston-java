@@ -35,27 +35,27 @@ public class Park {
             this.ticketCost = ticketCost;
         }
 
-        String getAttractionName() {
+        public String getAttractionName() {
             return attractionName;
         }
 
-        void setAttractionName(String attractionName) {
+        public void setAttractionName(String attractionName) {
             this.attractionName = attractionName;
         }
 
-        String getAttractionOpenTime() {
+        public String getAttractionOpenTime() {
             return attractionOpenTime;
         }
 
-        void setAttractionOpenTime(String attractionOpenTime) {
+        public void setAttractionOpenTime(String attractionOpenTime) {
             this.attractionOpenTime = attractionOpenTime;
         }
 
-        double getTicketCost() {
+        public double getTicketCost() {
             return ticketCost;
         }
 
-        void setTicketCost(double ticketCost) {
+        public void setTicketCost(double ticketCost) {
             this.ticketCost = ticketCost;
         }
 

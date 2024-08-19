@@ -26,7 +26,6 @@ public class Main {
         // Задача №3
         Park gorkyPark = new Park("Парк Горького ");
         gorkyPark.attractionAdd("Колесо обозрения ", "с 10:00 до 20:00 ", 11.5);
-        gorkyPark.attractionAdd("Качели ", "с 10:00 до 20:00 ", 9.5);
         gorkyPark.printAttraction();
     }
 }
