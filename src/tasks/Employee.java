@@ -1,12 +1,12 @@
 package tasks;
 
 public class Employee {
-    private final String fullName;
-    private final String position;
-    private final String email;
-    private final String phoneNumber;
-    private final double salary;
-    private final int yearsOld;
+    private String fullName;
+    private String position;
+    private String email;
+    private String phoneNumber;
+    private double salary;
+    private int yearsOld;
 
     public Employee(String fullName, String position, String email, String phoneNumber, double salary, int yearsOld) {
         this.fullName = fullName;
@@ -27,6 +27,6 @@ public class Employee {
     }
 
     public String toString() {
-        return "ФИО: " + fullName + ", " + "Должность: " + position + ", " + "Email: " + email + ", " + "Номер телефона: " + phoneNumber + ", " + "Зарплата: " + salary + " руб, " + "Возраст: " + yearsOld+" лет.";
+        return "ФИО: " + fullName + ", " + "Должность: " + position + ", " + "Email: " + email + ", " + "Номер телефона: " + phoneNumber + ", " + "Зарплата: " + salary + " руб, " + "Возраст: " + yearsOld + " лет.";
     }
 }

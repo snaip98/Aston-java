@@ -13,8 +13,7 @@ public class Park {
     }
 
     public void attractionAdd(String attractionName, String attractionOpenTime, double ticketCost) {
-        AttractionInfo attraction = new AttractionInfo(attractionName, attractionOpenTime, ticketCost);
-        attractions.add(attraction);
+        attractions.add(new AttractionInfo(attractionName, attractionOpenTime, ticketCost));
     }
 
     public void printAttraction() {
