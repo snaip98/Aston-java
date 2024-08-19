@@ -10,7 +10,6 @@ public class Park {
     public Park(String parkName) {
         this.parkName = parkName;
         this.attractions = new ArrayList<>();
-
     }
 
     public void attractionAdd(String attractionName, String attractionOpenTime, double ticketCost) {

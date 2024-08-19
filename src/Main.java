@@ -1,12 +1,12 @@
 import tasks.*;
 
-
 public class Main {
     public static void main(String[] args) {
         // Задача №1
         Employee employee = new Employee("Акснович Иван Александрович", "QA Automation", "aksnovich.ivan@gmail.com",
                 "80333372258", 500, 26);
         employee.printEmployeeInfo();
+
         // Задача №2
         Employee[] persons = new Employee[5];
         persons[0] = new Employee("Науменко Александр Викторович ", "QA Engineer Java ", "Naumenko.ex@gmail.com ",
@@ -23,6 +23,7 @@ public class Main {
         for (Employee index : persons) {
             System.out.println(index);
         }
+
         // Задача №3
         Park gorkyPark = new Park("Парк Горького ");
         gorkyPark.attractionAdd("Колесо обозрения ", "с 10:00 до 20:00 ", 11.5);

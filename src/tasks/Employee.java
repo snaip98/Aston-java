@@ -17,7 +17,6 @@ public class Employee {
         this.yearsOld = yearsOld;
     }
 
-
     public void printEmployeeInfo() {
         System.out.println("ФИО: " + fullName);
         System.out.println("Должность: " + position);
