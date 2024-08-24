@@ -14,13 +14,14 @@ public class Main {
         Cat[] cats = new Cat[2];
         cats[0] = new Cat("Барсик");
         cats[1] = new Cat("Леопольд");
-        Cat.addFoodToBowl(30);
+        Bowl bowlForCats = new Bowl();
+        bowlForCats.addFoodToBowl(30);
         for (Cat cat : cats) {
-            cat.eatFromBowl(20);
+            bowlForCats.eatFromBowl(20);
+            System.out.println(bowlForCats.getFoodAmount());
+            System.out.println(cat.name + " " + bowlForCats.catsSatiety);
         }
-        for (Cat cat : cats) {
-            System.out.println(cat.name + " " + cat.catsSatiety);
-        }
+
         Cat.printCount();
         // Задача №2
        Circle circle = new Circle("Зелёный", "Синий", 2);
@@ -29,6 +30,5 @@ public class Main {
        circle.printInfo();
        rectangle.printInfo();
        triangle.printInfo();
-
     }
 }

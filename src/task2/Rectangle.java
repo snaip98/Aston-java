@@ -20,4 +20,3 @@ public class Rectangle extends GeometricFigure{
         return 2*(length+width);
     }
 }
-

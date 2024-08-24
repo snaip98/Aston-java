@@ -1,6 +1,6 @@
 package task1;
 
-public class Animal {
+public abstract class Animal {
     public String name;
     public int runningLimit;
     public int swimmingLimit;

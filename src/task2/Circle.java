@@ -18,4 +18,3 @@ private double radius;
         return 2*Math.PI*radius;
     }
 }
-

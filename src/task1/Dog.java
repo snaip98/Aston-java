@@ -22,7 +22,6 @@ public class Dog extends Animal {
         super.swim(obstacleLength);
     }
 
-
     public static void printCount() {
         System.out.println("Количество собак: " + dogCount);
     }
