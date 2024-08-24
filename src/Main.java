@@ -1,4 +1,6 @@
 import task1.*;
+import task1.Staff.Cat;
+import task1.Staff.Dog;
 import task2.*;
 
 public class Main {

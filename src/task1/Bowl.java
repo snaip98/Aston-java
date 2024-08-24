@@ -1,7 +1,7 @@
 package task1;
 
 public class Bowl {
-    public static double foodAmountInTheBowl = 0;
+    private static double foodAmountInTheBowl = 0;
     public boolean catsSatiety;
 
     public void eatFromBowl(double catAppetite) {
