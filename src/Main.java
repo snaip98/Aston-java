@@ -1,7 +1,5 @@
-package task2;
-
-import task1.Cat;
-import task1.Dog;
+import task1.*;
+import task2.*;
 
 public class Main {
     public static void main(String[] args) {
