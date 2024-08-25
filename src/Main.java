@@ -1,6 +1,5 @@
 import task1.*;
-import task1.Staff.Cat;
-import task1.Staff.Dog;
+import task1.Staff.Bowl;
 import task2.*;
 
 public class Main {
@@ -23,8 +22,8 @@ public class Main {
             System.out.println(bowlForCats.getFoodAmount());
             System.out.println(cat.name + " " + bowlForCats.catsSatiety);
         }
-
         Cat.printCount();
+
         // Задача №2
        Circle circle = new Circle("Зелёный", "Синий", 2);
        Rectangle rectangle = new Rectangle("Красный","Фиолетовый",4,5);

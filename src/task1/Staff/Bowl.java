@@ -1,4 +1,4 @@
-package task1;
+package task1.Staff;
 
 public class Bowl {
     private static double foodAmountInTheBowl = 0;

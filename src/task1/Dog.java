@@ -1,6 +1,4 @@
-package task1.Staff;
-
-import task1.Animal;
+package task1;
 
 public class Dog extends Animal {
     private static int dogCount = 0;
