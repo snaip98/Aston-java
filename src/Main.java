@@ -25,11 +25,11 @@ public class Main {
         Cat.printCount();
 
         // Задача №2
-       Circle circle = new Circle("Зелёный", "Синий", 2);
-       Rectangle rectangle = new Rectangle("Красный","Фиолетовый",4,5);
-       Triangle triangle = new Triangle("Cиний","Жёлтый",3,4,5);
-       circle.printInfo();
-       rectangle.printInfo();
-       triangle.printInfo();
+        Circle circle = new Circle("Зелёный", "Синий", 3);
+        Rectangle rectangle = new Rectangle("Красный", "Фиолетовый", 4, 5);
+        Triangle triangle = new Triangle("Cиний", "Жёлтый", 3, 4, 5);
+        circle.printInfo(circle.perimeter);
+        rectangle.printInfo(rectangle.perimeter);
+        triangle.printInfo(triangle.perimeter);
     }
 }

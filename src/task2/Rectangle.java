@@ -1,13 +1,14 @@
 package task2;
 
 public class Rectangle extends GeometricFigure{
- private double length;
- private double width;
-
+ public double length;
+ public double width;
     public Rectangle(String fillColor, String borderColor, double length, double width) {
         super(fillColor, borderColor);
+        validatePositive(length,width);
         this.length = length;
         this.width = width;
+        this.perimeter = this.calculatePerimeter(length,width);
     }
 
     @Override
@@ -16,7 +17,7 @@ public class Rectangle extends GeometricFigure{
     }
 
     @Override
-    public double calculatePerimeter() {
-        return 2*(length+width);
+    public double calculatePerimeter(double length, double width) {
+        return super.calculatePerimeter(length, width);
     }
 }

@@ -1,20 +1,26 @@
 package task2;
 
 public class Circle extends GeometricFigure {
-private double radius;
+    public double radius;
 
-    public Circle(String fillColor, String borderColor, double radius) {
-        super(fillColor, borderColor);
+
+
+    public Circle(String borderColor, String fillColor, double radius) {
+        super(borderColor, fillColor);
+        validatePositive(radius);
         this.radius = radius;
+        this.perimeter = this.calculatePerimeter(radius);
     }
 
     @Override
     public double calculateArea() {
-        return Math.PI*radius*radius;
+        return Math.PI * radius * radius;
     }
 
     @Override
-    public double calculatePerimeter() {
-        return 2*Math.PI*radius;
+    public double calculatePerimeter(double radius) {
+        return super.calculatePerimeter(radius);
     }
+
+
 }
