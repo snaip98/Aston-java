@@ -1,6 +1,9 @@
-import task1.*;
+import task1.Cat;
+import task1.Dog;
 import task1.Staff.Bowl;
-import task2.*;
+import task2.Circle;
+import task2.Rectangle;
+import task2.Triangle;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,9 +21,9 @@ public class Main {
         Bowl bowlForCats = new Bowl();
         bowlForCats.addFoodToBowl(30);
         for (Cat cat : cats) {
-            bowlForCats.eatFromBowl(20);
-            System.out.println(bowlForCats.getFoodAmount());
-            System.out.println(cat.name + " " + bowlForCats.catsSatiety);
+            cat.tryToEatFromTheBowl(bowlForCats, 20);
+            System.out.println("Количество еды в миске: " + bowlForCats.getFoodAmountInTheBowl());
+            System.out.println(cat.name + " " + cat.catsSatiety);
         }
         Cat.printCount();
 

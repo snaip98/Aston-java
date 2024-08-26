@@ -1,25 +1,18 @@
 package task1.Staff;
 
 public class Bowl {
-    private static double foodAmountInTheBowl = 0;
-    public boolean catsSatiety;
+    private double foodAmountInTheBowl;
 
-    public void eatFromBowl(double catAppetite) {
-        if (foodAmountInTheBowl >= catAppetite) {
-            foodAmountInTheBowl -= catAppetite;
-            catsSatiety = true;
-
-        } else {
-            System.out.println("Наполните миску!");
-            catsSatiety = false;
-        }
+    public void addFoodToBowl(double foodAmount) {
+        foodAmountInTheBowl += foodAmount;
     }
 
-    public void addFoodToBowl(double food) {
-        foodAmountInTheBowl += food;
+    public void eatFromBowl(double foodAmount) {
+        foodAmountInTheBowl -= foodAmount;
+
     }
 
-    public double getFoodAmount() {
+    public double getFoodAmountInTheBowl() {
         return foodAmountInTheBowl;
     }
 }
