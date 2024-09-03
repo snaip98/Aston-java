@@ -22,7 +22,7 @@ public class MyArray {
                         int intValue = Integer.parseInt(shouldBeMatrix4x4[i][j]);
                         memory += intValue;
                     } catch (NumberFormatException e) {
-                        throw new MyArrayDataException("В строке №: " + i + " значение №: " + j + " Невозможно преобразавать в int!");
+                        throw new MyArrayDataException("В строке №: " + (i+1) + " значение №: " + (j+1) + " Невозможно преобразавать в int!");
                     }
                 }
             }
