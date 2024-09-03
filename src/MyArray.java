@@ -4,9 +4,15 @@ import exceptions.MyArraySizeException;
 public class MyArray {
     public static void checkArray(String[][] shouldBeMatrix4x4) {
         try {
-            if (shouldBeMatrix4x4.length != 4 || shouldBeMatrix4x4[0].length != 4) {
-                throw new MyArraySizeException("Размер массива должен быть 4х4");
+            if (shouldBeMatrix4x4.length != 4) {
+                throw new MyArraySizeException("Количество строк должно быть 4");
             }
+            for (int i = 0; i < shouldBeMatrix4x4.length; i++) {
+                if (shouldBeMatrix4x4[i].length != 4) {
+                    throw new MyArraySizeException("В строке " + (i + 1) + " должно быть 4 элемента");
+                }
+            }
+
             int memory = 0;
             for (int i = 0; i < shouldBeMatrix4x4.length; i++) {
 
