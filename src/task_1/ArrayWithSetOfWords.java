@@ -16,6 +16,8 @@ public class ArrayWithSetOfWords {
         for (String word : words) {
             stringCountMap.put(word, stringCountMap.getOrDefault(word, 0) + 1);
         }
-        System.out.println(stringCountMap);
+        for (Map.Entry<String, Integer> entry : stringCountMap.entrySet()) {
+            System.out.println("Количество слов: "+entry.getKey() + " - " + entry.getValue());
+        }
     }
 }
