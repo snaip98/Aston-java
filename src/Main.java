@@ -6,9 +6,8 @@ public class Main {
         //Задача №1
         String[] words = new String[]{"стол", "стол", "монитор", "мышка", "телефон", "стул", "телефон", "стул", "стол", "ноутбук", "стул", "ноутбук", "стул", "клавиатура"};
         ArrayWithSetOfWords actionsUsingCollections = new ArrayWithSetOfWords();
-        actionsUsingCollections.arrayToMap(words);
-        actionsUsingCollections.printSetWords();
-        actionsUsingCollections.printCountSameWords();
+        actionsUsingCollections.printWordCount(words);
+        actionsUsingCollections.printListOfUniqueWords();
 
         //Задача №2
         TelephoneDirectory telephoneDirectory = new TelephoneDirectory();
@@ -22,5 +21,6 @@ public class Main {
         telephoneDirectory.get("Aksnovich");
         telephoneDirectory.get("Naumenko");
         telephoneDirectory.get("Krikun");
+        telephoneDirectory.get("Krikuh");
     }
 }

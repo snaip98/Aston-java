@@ -1,34 +1,21 @@
 package task_1;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ArrayWithSetOfWords {
 
-    Map<String, ArrayList<Integer>> map = new HashMap<>();
+    Map<String, Integer> stringCountMap = new HashMap<>();
 
-    public void printSetWords() {
-        System.out.println("Список уникальных слов в массиве: " + map.keySet());
+    public void printListOfUniqueWords() {
+        System.out.println("Список уникальных слов в массиве: " + stringCountMap.keySet());
     }
 
-    public void arrayToMap(String[] words) {
+    public void printWordCount(String[] words) {
 
         for (String word : words) {
-
-            if (!map.containsKey(word)) {
-                map.put(word, new ArrayList<>());
-            }
-
-            map.get(word).add(1);
+            stringCountMap.put(word, stringCountMap.getOrDefault(word, 0) + 1);
         }
-    }
-
-    public void printCountSameWords() {
-
-        for (String key : map.keySet()) {
-
-            System.out.println("Количество слов: " + key + " - " + map.get(key).size());
-        }
+        System.out.println(stringCountMap);
     }
 }
