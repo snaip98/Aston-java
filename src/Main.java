@@ -22,6 +22,5 @@ public class Main {
         telephoneDirectory.get("Naumenko");
         telephoneDirectory.get("Krikuh");
         telephoneDirectory.get("Krikun");
-
     }
 }

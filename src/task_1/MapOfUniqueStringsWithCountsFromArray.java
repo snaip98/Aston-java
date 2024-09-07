@@ -21,7 +21,6 @@ public class MapOfUniqueStringsWithCountsFromArray {
     }
 
     public void printWordCount() {
-
         for (Map.Entry<String, Integer> entry : stringCountMap.entrySet()) {
             System.out.println("Количество слов: " + entry.getKey() + " - " + entry.getValue());
         }

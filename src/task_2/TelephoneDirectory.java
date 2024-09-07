@@ -9,7 +9,6 @@ public class TelephoneDirectory {
     Map<String, ArrayList<String>> phoneDirectory = new HashMap<>();
 
     public void get(String lastName) {
-
             if (!phoneDirectory.containsKey(lastName)) {
                 System.out.println("Такой фамилии: " + lastName + " нет в справочнике!");
             }
@@ -18,7 +17,6 @@ public class TelephoneDirectory {
     }
 
     public void add(String lastName, String phoneNumber) {
-
         if (!phoneDirectory.containsKey(lastName)) {
             phoneDirectory.put(lastName, new ArrayList<>());
         }
