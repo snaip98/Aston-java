@@ -1,22 +1,25 @@
 package org.example;
 
-public class FactorialCalculator {
-    public long calculateFactorial(int value) {
-        if (value == 0) {
-            return 1;
-        }
-        if (value < 0) {
-            throw new IllegalArgumentException("Нельзя вычислить факториал отрицательного числа");
+import java.math.BigInteger;
 
-        }
-        if (value > 20) {
-            throw new IllegalArgumentException("Факториал 20 предел для long");
-        }
-        long factorial = 1;
+public class FactorialCalculator {
+    private static int maxInputValue = 100;
+
+    public BigInteger calculateFactorial(int value) {
+        checkValueInPositiveClass(value);
+        BigInteger factorial = BigInteger.ONE;
         for (int i = 1; i <= value; i++) {
-            factorial *= i;
+            factorial = factorial.multiply(BigInteger.valueOf(i));
         }
         return factorial;
     }
-}
 
+    private void checkValueInPositiveClass(int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException("Нельзя вычислить факториал отрицательного числа");
+        }
+        if (value > maxInputValue) {
+            throw new IllegalArgumentException("Калькулятор принимает значения от 0 до 100");
+        }
+    }
+}
