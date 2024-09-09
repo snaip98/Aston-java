@@ -12,13 +12,13 @@ public class FactorialCalculatorTest {
 
     @Test
     public void factorialOfPositiveClassesTest() {
-        BigInteger[] expectedValues = new BigInteger[]{BigInteger.ONE,
-                new BigInteger("24"),
-                new BigInteger("3628800")};
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(factorialCalculator.calculateFactorial(1), expectedValues[0]);
-        softAssert.assertEquals(factorialCalculator.calculateFactorial(4), expectedValues[1]);
-        softAssert.assertEquals(factorialCalculator.calculateFactorial(10), expectedValues[2]);
+        softAssert.assertEquals(factorialCalculator.calculateFactorial(1), BigInteger.ONE);
+        softAssert.assertEquals(factorialCalculator.calculateFactorial(4), new BigInteger("24"));
+        softAssert.assertEquals(factorialCalculator.calculateFactorial(10), new BigInteger("3628800"));
+        softAssert.assertEquals(factorialCalculator.calculateFactorial(30), new BigInteger("265252859812191058636308480000000"));
+        softAssert.assertEquals(factorialCalculator.calculateFactorial(60), new BigInteger("8320987112741390144276341183223364380754172606361245952449277696409600000000000000"));
+        softAssert.assertEquals(factorialCalculator.calculateFactorial(80), new BigInteger("71569457046263802294811533723186532165584657342365752577109445058227039255480148842668944867280814080000000000000000000"));
         softAssert.assertAll();
     }
 
@@ -39,7 +39,8 @@ public class FactorialCalculatorTest {
 
     @Test
     public void factorialOfMaxValueTest() {
-        assertEquals(new BigInteger("93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000"),
-                factorialCalculator.calculateFactorial(100));
+        assertEquals(factorialCalculator.calculateFactorial(100),
+                new BigInteger("93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000")
+        );
     }
 }
