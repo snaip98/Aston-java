@@ -15,11 +15,11 @@ public class FactorialCalculatorTest {
         BigInteger[] expectedValues = {BigInteger.ONE,
                 new BigInteger("24"),
                 new BigInteger("3628800")};
-        SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(factorialCalculator.calculateFactorial(1)).isEqualTo(expectedValues[0]);
-        softly.assertThat(factorialCalculator.calculateFactorial(3)).isEqualTo(expectedValues[1]);
-        softly.assertThat(factorialCalculator.calculateFactorial(10)).isEqualTo(expectedValues[2]);
-        softly.assertAll();
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(factorialCalculator.calculateFactorial(1)).isEqualTo(expectedValues[0]);
+        softAssertions.assertThat(factorialCalculator.calculateFactorial(3)).isEqualTo(expectedValues[1]);
+        softAssertions.assertThat(factorialCalculator.calculateFactorial(10)).isEqualTo(expectedValues[2]);
+        softAssertions.assertAll();
     }
 
     @Test
