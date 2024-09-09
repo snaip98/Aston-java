@@ -6,7 +6,7 @@ public class FactorialCalculator {
     private static int maxInputValue = 100;
 
     public BigInteger calculateFactorial(int value) {
-        checkValueInPositiveClass(value);
+        checkValueInPositive(value);
         BigInteger factorial = BigInteger.ONE;
         for (int i = 2; i <= value; i++) {
             factorial = factorial.multiply(BigInteger.valueOf(i));
@@ -14,7 +14,7 @@ public class FactorialCalculator {
         return factorial;
     }
 
-    private void checkValueInPositiveClass(int value) {
+    private void checkValueInPositive(int value) {
         if (value < 0) {
             throw new IllegalArgumentException("Нельзя вычислить факториал отрицательного числа");
         }
