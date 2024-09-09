@@ -8,7 +8,7 @@ public class FactorialCalculator {
     public BigInteger calculateFactorial(int value) {
         checkValueInPositiveClass(value);
         BigInteger factorial = BigInteger.ONE;
-        for (int i = 1; i <= value; i++) {
+        for (int i = 2; i <= value; i++) {
             factorial = factorial.multiply(BigInteger.valueOf(i));
         }
         return factorial;
