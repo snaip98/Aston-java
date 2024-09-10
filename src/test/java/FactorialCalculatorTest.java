@@ -1,5 +1,7 @@
 import org.assertj.core.api.SoftAssertions;
 import org.example.FactorialCalculator;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
@@ -8,10 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FactorialCalculatorTest {
-    FactorialCalculator factorialCalculator = new FactorialCalculator();
+    FactorialCalculator factorialCalculator;
 
+    @BeforeEach
+    public void createCalculatorInstance(){
+         factorialCalculator = new FactorialCalculator();
+    }
     @Test
-    public void factorialOfPositiveClassesTest() {
+    @DisplayName("Calculate factorial for numbers between 0 and 100")
+    public void factorialOfPositiveValuesTest() {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(factorialCalculator.calculateFactorial(1)).isEqualTo(BigInteger.ONE);
         softAssertions.assertThat(factorialCalculator.calculateFactorial(4)).isEqualTo(new BigInteger("24"));
@@ -23,20 +30,21 @@ public class FactorialCalculatorTest {
     }
 
     @Test
+    @DisplayName("Calculate factorial of zero")
     public void factorialOfZeroTest() {
         assertEquals(factorialCalculator.calculateFactorial(0),BigInteger.ONE);
     }
-
+    @DisplayName("Calculate factorial for negativ values")
     @Test
     public void factorialOfNegativeValueTest() {
         assertThrows(IllegalArgumentException.class, () -> factorialCalculator.calculateFactorial(-1));
     }
-
+    @DisplayName("Calculate factorial for numbers greater than 100")
     @Test
     public void factorialOfBiggerThanOneHundredValueTest() {
         assertThrows(IllegalArgumentException.class, () -> factorialCalculator.calculateFactorial(101));
     }
-
+    @DisplayName("factorial calculation 100")
     @Test
     public void factorialOfMaxValueTest() {
         assertEquals(factorialCalculator.calculateFactorial(100),
