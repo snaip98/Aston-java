@@ -1,4 +1,5 @@
 import org.example.FactorialCalculator;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -8,7 +9,12 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertThrows;
 
 public class FactorialCalculatorTest {
-    FactorialCalculator factorialCalculator = new FactorialCalculator();
+   private  FactorialCalculator factorialCalculator;
+
+    @BeforeClass
+    public void createCalculatorInstance(){
+        factorialCalculator = new FactorialCalculator();
+    }
 
     @Test
     public void factorialOfPositiveTest() {
