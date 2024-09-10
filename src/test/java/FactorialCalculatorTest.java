@@ -9,15 +9,15 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertThrows;
 
 public class FactorialCalculatorTest {
-   private  FactorialCalculator factorialCalculator;
+    private FactorialCalculator factorialCalculator;
 
     @BeforeTest
-    public void createCalculatorInstance(){
+    public void createCalculatorInstance() {
         factorialCalculator = new FactorialCalculator();
     }
 
-    @Test
-    public void factorialOfPositiveTest() {
+    @Test(description = "Calculate factorial for numbers between 0 and 100")
+    public void factorialOfPositiveValuesTest() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(factorialCalculator.calculateFactorial(1), BigInteger.ONE);
         softAssert.assertEquals(factorialCalculator.calculateFactorial(4), new BigInteger("24"));
@@ -28,22 +28,22 @@ public class FactorialCalculatorTest {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(description = "Calculate factorial of zero")
     public void factorialOfZeroTest() {
         assertEquals(factorialCalculator.calculateFactorial(0), BigInteger.ONE);
     }
 
-    @Test
+    @Test(description = "Calculate factorial for negativ values")
     public void factorialOfNegativeValueTest() {
         assertThrows(IllegalArgumentException.class, () -> factorialCalculator.calculateFactorial(-1));
     }
 
-    @Test
+    @Test(description = "Throw exception for values greater than 100")
     public void factorialOfBiggerThanMaxValueTest() {
         assertThrows(IllegalArgumentException.class, () -> factorialCalculator.calculateFactorial(101));
     }
 
-    @Test
+    @Test(description = "factorial calculation 100")
     public void factorialOfMaxValueTest() {
         assertEquals(factorialCalculator.calculateFactorial(100),
                 new BigInteger("93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000")
