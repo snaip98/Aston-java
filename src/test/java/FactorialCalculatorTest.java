@@ -1,5 +1,5 @@
 import org.example.FactorialCalculator;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -11,7 +11,7 @@ import static org.testng.Assert.assertThrows;
 public class FactorialCalculatorTest {
    private  FactorialCalculator factorialCalculator;
 
-    @BeforeClass
+    @BeforeTest
     public void createCalculatorInstance(){
         factorialCalculator = new FactorialCalculator();
     }
@@ -24,7 +24,7 @@ public class FactorialCalculatorTest {
         softAssert.assertEquals(factorialCalculator.calculateFactorial(10), new BigInteger("3628800"));
         softAssert.assertEquals(factorialCalculator.calculateFactorial(30), new BigInteger("265252859812191058636308480000000"));
         softAssert.assertEquals(factorialCalculator.calculateFactorial(60), new BigInteger("8320987112741390144276341183223364380754172606361245952449277696409600000000000000"));
-        softAssert.assertEquals(factorialCalculator.calculateFactorial(80), new BigInteger("71569457046263802294811533723186532165584657342365752577109445058227039255480148842668944867280814080000000000000000000"));
+        softAssert.assertEquals(factorialCalculator.calculateFactorial(99), new BigInteger("933262154439441526816992388562667004907159682643816214685929638952175999932299156089414639761565182862536979208272237582511852109168640000000000000000000000"));
         softAssert.assertAll();
     }
 
