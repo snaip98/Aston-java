@@ -11,7 +11,7 @@ public class FactorialCalculatorTest {
     FactorialCalculator factorialCalculator = new FactorialCalculator();
 
     @Test
-    public void factorialOfPositiveClassesTest() {
+    public void factorialOfPositiveTest() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(factorialCalculator.calculateFactorial(1), BigInteger.ONE);
         softAssert.assertEquals(factorialCalculator.calculateFactorial(4), new BigInteger("24"));
