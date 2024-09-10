@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FactorialCalculatorTest {
-    FactorialCalculator factorialCalculator;
+   private FactorialCalculator factorialCalculator;
 
     @BeforeEach
     public void createCalculatorInstance(){
@@ -39,7 +39,7 @@ public class FactorialCalculatorTest {
     public void factorialOfNegativeValueTest() {
         assertThrows(IllegalArgumentException.class, () -> factorialCalculator.calculateFactorial(-1));
     }
-    @DisplayName("Calculate factorial for numbers greater than 100")
+    @DisplayName("Throw exception for values greater than 100")
     @Test
     public void factorialOfBiggerThanOneHundredValueTest() {
         assertThrows(IllegalArgumentException.class, () -> factorialCalculator.calculateFactorial(101));
