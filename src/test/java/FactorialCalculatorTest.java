@@ -1,7 +1,6 @@
 import org.assertj.core.api.SoftAssertions;
 import org.example.FactorialCalculator;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FactorialCalculatorTest {
-   private static FactorialCalculator factorialCalculator;
+    private static FactorialCalculator factorialCalculator;
 
     @BeforeAll
-    public static void createCalculatorInstance(){
+    public static void createCalculatorInstance() {
         factorialCalculator = new FactorialCalculator();
     }
+
     @Test
     @DisplayName("Calculate factorial for numbers between 0 and 100")
     public void factorialOfPositiveValuesTest() {
@@ -33,18 +33,21 @@ public class FactorialCalculatorTest {
     @Test
     @DisplayName("Calculate factorial of zero")
     public void factorialOfZeroTest() {
-        assertEquals(factorialCalculator.calculateFactorial(0),BigInteger.ONE);
+        assertEquals(factorialCalculator.calculateFactorial(0), BigInteger.ONE);
     }
+
     @DisplayName("Calculate factorial for negativ values")
     @Test
     public void factorialOfNegativeValueTest() {
         assertThrows(IllegalArgumentException.class, () -> factorialCalculator.calculateFactorial(-1));
     }
+
     @DisplayName("Throw exception for values greater than 100")
     @Test
     public void factorialOfBiggerThanOneHundredValueTest() {
         assertThrows(IllegalArgumentException.class, () -> factorialCalculator.calculateFactorial(101));
     }
+
     @DisplayName("factorial calculation 100")
     @Test
     public void factorialOfMaxValueTest() {
