@@ -1,5 +1,6 @@
 import org.assertj.core.api.SoftAssertions;
 import org.example.FactorialCalculator;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FactorialCalculatorTest {
-   private FactorialCalculator factorialCalculator;
+   private static FactorialCalculator factorialCalculator;
 
-    @BeforeEach
-    public void createCalculatorInstance(){
-         factorialCalculator = new FactorialCalculator();
+    @BeforeAll
+    public static void createCalculatorInstance(){
+        factorialCalculator = new FactorialCalculator();
     }
     @Test
     @DisplayName("Calculate factorial for numbers between 0 and 100")
@@ -25,7 +26,7 @@ public class FactorialCalculatorTest {
         softAssertions.assertThat(factorialCalculator.calculateFactorial(10)).isEqualTo(new BigInteger("3628800"));
         softAssertions.assertThat(factorialCalculator.calculateFactorial(30)).isEqualTo(new BigInteger("265252859812191058636308480000000"));
         softAssertions.assertThat(factorialCalculator.calculateFactorial(60)).isEqualTo(new BigInteger("8320987112741390144276341183223364380754172606361245952449277696409600000000000000"));
-        softAssertions.assertThat(factorialCalculator.calculateFactorial(80)).isEqualTo(new BigInteger("71569457046263802294811533723186532165584657342365752577109445058227039255480148842668944867280814080000000000000000000"));
+        softAssertions.assertThat(factorialCalculator.calculateFactorial(99)).isEqualTo(new BigInteger("933262154439441526816992388562667004907159682643816214685929638952175999932299156089414639761565182862536979208272237582511852109168640000000000000000000000"));
         softAssertions.assertAll();
     }
 
