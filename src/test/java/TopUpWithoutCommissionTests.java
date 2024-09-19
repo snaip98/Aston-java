@@ -1,8 +1,8 @@
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.*;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,15 +17,16 @@ public class TopUpWithoutCommissionTests {
     public static void openWebSiteAndClickButtonOfCookie() {
         driver = new ChromeDriver();
         driver.get("https://www.mts.by/");
-        checkCoockie();
+        checkCookie();
+
     }
-    private static void checkCoockie(){
-        try{
-            waitForElementToBeVisible("//button[@class =  'btn btn_black cookie__ok']",5);
+
+    private static void checkCookie() {
+        try {
+            waitForElementToBeVisible("//button[@class =  'btn btn_black cookie__ok']", 5);
             driver.findElement(By.xpath("//button[@class =  'btn btn_black cookie__ok']")).click();
-        }
-        catch (TimeoutException e){
-            System.out.println("Coockie не отображаются");
+        } catch (TimeoutException e) {
+            System.out.println("Cookie не отображаются");
         }
     }
 
@@ -35,14 +36,18 @@ public class TopUpWithoutCommissionTests {
     }
 
     @Test
+    @Order(1)
+    @DisplayName("Проверка названия блока 'Онлайн пополнение без комиссии'")
     public void blockNameValidationTest() {
-       waitForElementToBeVisible("//div[@class = 'pay__wrapper']/h2",5);
+        waitForElementToBeVisible("//div[@class = 'pay__wrapper']/h2", 5);
         WebElement blockName = driver.findElement(By.xpath("//div[@class = 'pay__wrapper']/h2"));
         Assertions.assertEquals("Онлайн пополнение\n" +
                 "без комиссии", blockName.getText());
     }
 
     @Test
+    @Order(2)
+    @DisplayName("Проверка наличия логотипов платёжных систем")
     public void paymentSystemsLogoPresenceTest() {
         String[] logos = new String[]{
                 "//img[@alt='Visa']",
@@ -67,6 +72,8 @@ public class TopUpWithoutCommissionTests {
     }
 
     @Test
+    @Order(3)
+    @DisplayName("Проверка ссылки на страницу оплаты и безопасности")
     public void serviceLinkTest() {
         waitForElementToBeVisible("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]", 5);
         driver.findElement(By.xpath("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]")).click();
@@ -74,6 +81,8 @@ public class TopUpWithoutCommissionTests {
     }
 
     @Test
+    @Order(4)
+    @DisplayName("Заполнение полей формы и проверка кнопки 'Продолжить'")
     public void fillFieldsAndVerifyContinueButtonTest() {
 
         String[] xPathes = new String[]{
@@ -91,8 +100,16 @@ public class TopUpWithoutCommissionTests {
             waitForElementToBeVisible(xPathes[i], 5);
             driver.findElement(By.xpath(xPathes[i])).sendKeys(inputData[i]);
         }
+        checkCookie();
         WebElement continueButton = driver.findElement(By.xpath("//button[@Class = 'button button__default ']"));
         Assertions.assertTrue(continueButton.isEnabled(), "Кнопка 'Продолжить' должна быть доступна для нажатия.");
         continueButton.click();
+
+        // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // WebElement parentIframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@data-tagging-id='G-7C99PNNT06']")));
+        /*driver.switchTo().frame(parentIframe);
+        WebElement childIframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bepaid-iframe")));
+        driver.switchTo().frame(childIframe);*/
+
     }
 }
