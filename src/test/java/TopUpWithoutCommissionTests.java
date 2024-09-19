@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,9 +16,12 @@ public class TopUpWithoutCommissionTests {
 
     @BeforeAll
     public static void openWebSiteAndClickButtonOfCookie() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-cookies");
+        options.addArguments("--incognito");
+        driver = new ChromeDriver(options);
         driver.get("https://www.mts.by/");
-        driver.findElement(By.xpath("//button[@class =  'btn btn_black cookie__ok']")).click();
+
     }
 
     @AfterAll
@@ -27,9 +31,7 @@ public class TopUpWithoutCommissionTests {
 
     @Test
     public void blockNameValidationTest() {
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.
-                textToBePresentInElement(driver.findElement(By.xpath("//div[@class = 'pay__wrapper']/h2"
-                )), "Онлайн пополнение\n" + "без комиссии"));
+        waitForElementToBeVisible("//div[@class = 'pay__wrapper']/h2", 5);
         WebElement blockName = driver.findElement(By.xpath("//div[@class = 'pay__wrapper']/h2"));
         Assertions.assertEquals("Онлайн пополнение\n" +
                 "без комиссии", blockName.getText());
