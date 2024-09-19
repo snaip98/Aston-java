@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,12 +15,18 @@ public class TopUpWithoutCommissionTests {
 
     @BeforeAll
     public static void openWebSiteAndClickButtonOfCookie() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-cookies");
-        options.addArguments("--incognito");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
         driver.get("https://www.mts.by/");
-
+        checkCoockie();
+    }
+    private static void checkCoockie(){
+        try{
+            waitForElementToBeVisible("//button[@class =  'btn btn_black cookie__ok']",5);
+            driver.findElement(By.xpath("//button[@class =  'btn btn_black cookie__ok']")).click();
+        }
+        catch (TimeoutException e){
+            System.out.println("Coockie не отображаются");
+        }
     }
 
     @AfterAll
@@ -31,7 +36,7 @@ public class TopUpWithoutCommissionTests {
 
     @Test
     public void blockNameValidationTest() {
-        waitForElementToBeVisible("//div[@class = 'pay__wrapper']/h2", 5);
+       waitForElementToBeVisible("//div[@class = 'pay__wrapper']/h2",5);
         WebElement blockName = driver.findElement(By.xpath("//div[@class = 'pay__wrapper']/h2"));
         Assertions.assertEquals("Онлайн пополнение\n" +
                 "без комиссии", blockName.getText());
@@ -70,6 +75,7 @@ public class TopUpWithoutCommissionTests {
 
     @Test
     public void fillFieldsAndVerifyContinueButtonTest() {
+
         String[] xPathes = new String[]{
                 "//input[@placeholder = 'Номер телефона']",
                 "//input[@placeholder = 'Сумма']",
