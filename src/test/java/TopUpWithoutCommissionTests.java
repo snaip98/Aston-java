@@ -81,8 +81,9 @@ public class TopUpWithoutCommissionTests {
     @Order(3)
     @DisplayName("Проверка ссылки на страницу оплаты и безопасности")
     public void serviceLinkTest() {
-        waitForElementToBeVisible("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]", 2);
-        driver.findElement(By.xpath("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]")).click();
+        String xPathesOfLink = "//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]";
+        waitForElementToBeVisible(xPathesOfLink, 2);
+        driver.findElement(By.xpath(xPathesOfLink)).click();
         Assertions.assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", driver.getCurrentUrl());
     }
 
@@ -98,8 +99,6 @@ public class TopUpWithoutCommissionTests {
         String inputCountOfMoney = "1";
         String inputEmail = "aksnovich.ivan@gmail.com";
         waitForElementToBeVisible(phoneNumberXPath, 2);
-        WebElement inputPhonePlace = driver.findElement(By.xpath(phoneNumberXPath));
-        inputPhonePlace.sendKeys(inputPhoneNumber);
         String[] xPathes = new String[]{
                 phoneNumberXPath,
                 valueXPath,
