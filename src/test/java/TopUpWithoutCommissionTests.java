@@ -18,16 +18,21 @@ public class TopUpWithoutCommissionTests {
         driver = new ChromeDriver();
         driver.get("https://www.mts.by/");
         checkCookie();
-
     }
 
     private static void checkCookie() {
         try {
-            waitForElementToBeVisible("//button[@class =  'btn btn_black cookie__ok']", 5);
+            waitForElementToBeVisible("//button[@class =  'btn btn_black cookie__ok']", 2);
             driver.findElement(By.xpath("//button[@class =  'btn btn_black cookie__ok']")).click();
         } catch (TimeoutException e) {
             System.out.println("Cookie не отображаются");
         }
+    }
+
+    @BeforeEach
+    public void restartWebSite() {
+        driver.navigate().to("https://www.mts.by/");
+        checkCookie();
     }
 
     @AfterAll
@@ -35,12 +40,18 @@ public class TopUpWithoutCommissionTests {
         driver.quit();
     }
 
+    private static void waitForElementToBeVisible(String xpath, int timeOut) {
+        new WebDriverWait(driver, Duration.ofSeconds(timeOut))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+    }
+
     @Test
     @Order(1)
     @DisplayName("Проверка названия блока 'Онлайн пополнение без комиссии'")
     public void blockNameValidationTest() {
-        waitForElementToBeVisible("//div[@class = 'pay__wrapper']/h2", 5);
-        WebElement blockName = driver.findElement(By.xpath("//div[@class = 'pay__wrapper']/h2"));
+        String blokNameXPath = "//div[@class = 'pay__wrapper']/h2";
+        waitForElementToBeVisible(blokNameXPath, 2);
+        WebElement blockName = driver.findElement(By.xpath(blokNameXPath));
         Assertions.assertEquals("Онлайн пополнение\n" +
                 "без комиссии", blockName.getText());
     }
@@ -58,7 +69,7 @@ public class TopUpWithoutCommissionTests {
         };
         for (String xpathOfLogo : logos) {
             try {
-                waitForElementToBeVisible(xpathOfLogo, 5);
+                waitForElementToBeVisible(xpathOfLogo, 2);
                 Assertions.assertTrue(driver.findElement(By.xpath(xpathOfLogo)).isDisplayed(), "Логотип не отображается" + " " + xpathOfLogo);
             } catch (TimeoutException e) {
                 Assertions.fail("Логотип не найден в течение ожидания: " + xpathOfLogo);
@@ -66,16 +77,11 @@ public class TopUpWithoutCommissionTests {
         }
     }
 
-    private static void waitForElementToBeVisible(String xpath, int timeOut) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeOut))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-    }
-
     @Test
     @Order(3)
     @DisplayName("Проверка ссылки на страницу оплаты и безопасности")
     public void serviceLinkTest() {
-        waitForElementToBeVisible("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]", 5);
+        waitForElementToBeVisible("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]", 2);
         driver.findElement(By.xpath("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]")).click();
         Assertions.assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", driver.getCurrentUrl());
     }
@@ -84,27 +90,44 @@ public class TopUpWithoutCommissionTests {
     @Order(4)
     @DisplayName("Заполнение полей формы и проверка кнопки 'Продолжить'")
     public void fillFieldsAndVerifyContinueButtonTest() {
-
+        String phoneNumberXPath = "//input[@placeholder = 'Номер телефона']";
+        String valueXPath = "//input[@placeholder = 'Сумма']";
+        String emailXPath = "//input[@placeholder = 'E-mail для отправки чека']";
+        String buttonContinueXPath = "//button[@Class = 'button button__default ']";
+        String inputPhoneNumber = "297777777";
+        String inputCountOfMoney = "1";
+        String inputEmail = "aksnovich.ivan@gmail.com";
+        waitForElementToBeVisible(phoneNumberXPath, 2);
+        WebElement inputPhonePlace = driver.findElement(By.xpath(phoneNumberXPath));
+        inputPhonePlace.sendKeys(inputPhoneNumber);
         String[] xPathes = new String[]{
-                "//input[@placeholder = 'Номер телефона']",
-                "//input[@placeholder = 'Сумма']",
-                "//input[@placeholder = 'E-mail для отправки чека']",
-                "//button[@Class = 'button button__default ']"
+                phoneNumberXPath,
+                valueXPath,
+                emailXPath,
+                buttonContinueXPath
         };
         String[] inputData = new String[]{
-                "297777777",
-                "1",
-                "aksnovich.ivan@gmail.com"
+                inputPhoneNumber,
+                inputCountOfMoney,
+                inputEmail
         };
+        WebElement[] inputFields = new WebElement[xPathes.length];
+
         for (int i = 0; i < inputData.length; i++) {
-            waitForElementToBeVisible(xPathes[i], 5);
-            driver.findElement(By.xpath(xPathes[i])).sendKeys(inputData[i]);
+            waitForElementToBeVisible(xPathes[i], 2);
+            inputFields[i] = driver.findElement(By.xpath(xPathes[i]));
+            inputFields[i].sendKeys(inputData[i]);
         }
         checkCookie();
-        WebElement continueButton = driver.findElement(By.xpath("//button[@Class = 'button button__default ']"));
+        WebElement continueButton = driver.findElement(By.xpath(buttonContinueXPath));
         Assertions.assertTrue(continueButton.isEnabled(), "Кнопка 'Продолжить' должна быть доступна для нажатия.");
         continueButton.click();
+        WebElement parentFrame = driver.findElement(By.xpath("//iframe[@name='ya-frame-e76b8a59']"));
+        driver.switchTo().frame(parentFrame);
 
+
+       // WebElement childFrame = driver.findElement(By.xpath("//iframe[@class='bepaid-iframe']"));
+       // driver.switchTo().frame(childFrame);
         // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         // WebElement parentIframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@data-tagging-id='G-7C99PNNT06']")));
         /*driver.switchTo().frame(parentIframe);
