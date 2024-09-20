@@ -122,17 +122,5 @@ public class TopUpWithoutCommissionTests {
         WebElement continueButton = driver.findElement(By.xpath(buttonContinueXPath));
         Assertions.assertTrue(continueButton.isEnabled(), "Кнопка 'Продолжить' должна быть доступна для нажатия.");
         continueButton.click();
-        WebElement parentFrame = driver.findElement(By.xpath("//iframe[@name='ya-frame-e76b8a59']"));
-        driver.switchTo().frame(parentFrame);
-
-
-       // WebElement childFrame = driver.findElement(By.xpath("//iframe[@class='bepaid-iframe']"));
-       // driver.switchTo().frame(childFrame);
-        // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        // WebElement parentIframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@data-tagging-id='G-7C99PNNT06']")));
-        /*driver.switchTo().frame(parentIframe);
-        WebElement childIframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bepaid-iframe")));
-        driver.switchTo().frame(childIframe);*/
-
     }
 }
