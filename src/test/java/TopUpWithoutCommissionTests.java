@@ -26,17 +26,18 @@ public class TopUpWithoutCommissionTests {
     private String inputCountOfMoney = "1";
     private String inputEmail = "aksnovich.ivan@gmail.com";
     private By xPathesOfLink = By.xpath("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]");
+    private static String webSiteUrl = "https://www.mts.by/";
 
     @BeforeAll
     public static void openWebSite() {
         driver = new ChromeDriver();
-        driver.get("https://www.mts.by/");
+        driver.get(webSiteUrl);
         checkCookie();
     }
 
     @BeforeEach
     public void restartWebSite() {
-        driver.navigate().to("https://www.mts.by/");
+        driver.navigate().to(webSiteUrl);
         checkCookie();
     }
 
