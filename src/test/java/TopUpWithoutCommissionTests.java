@@ -12,21 +12,26 @@ import java.time.Duration;
 public class TopUpWithoutCommissionTests {
 
     public static WebDriver driver;
+    private static final By cookieButton = By.xpath("//button[@class = 'btn btn_black cookie__ok']");
+    private By blokNameXPath = By.xpath("//div[@class = 'pay__wrapper']/h2");
+    private By visaLogo = By.xpath("//img[@alt='Visa']");
+    private By verifiedByVisaLogo = By.xpath("//img[@alt='Verified By Visa']");
+    private By masterCardSecureCodeLogo = By.xpath("//img[@alt='MasterCard Secure Code']");
+    private By belkart = By.xpath("//img[@alt='Белкарт']");
+    private By phoneNumberXPath = By.xpath("//input[@placeholder = 'Номер телефона']");
+    private By valueXPath = By.xpath("//input[@placeholder = 'Сумма']");
+    private By emailXPath = By.xpath("//input[@placeholder = 'E-mail для отправки чека']");
+    private By buttonContinueXPath = By.xpath("//button[@Class = 'button button__default ']");
+    private String inputPhoneNumber = "297777777";
+    private String inputCountOfMoney = "1";
+    private String inputEmail = "aksnovich.ivan@gmail.com";
+    private By xPathesOfLink = By.xpath("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]");
 
     @BeforeAll
-    public static void openWebSiteAndClickButtonOfCookie() {
+    public static void openWebSite() {
         driver = new ChromeDriver();
         driver.get("https://www.mts.by/");
         checkCookie();
-    }
-
-    private static void checkCookie() {
-        try {
-            waitForElementToBeVisible("//button[@class =  'btn btn_black cookie__ok']", 2);
-            driver.findElement(By.xpath("//button[@class =  'btn btn_black cookie__ok']")).click();
-        } catch (TimeoutException e) {
-            System.out.println("Cookie не отображаются");
-        }
     }
 
     @BeforeEach
@@ -40,18 +45,12 @@ public class TopUpWithoutCommissionTests {
         driver.quit();
     }
 
-    private static void waitForElementToBeVisible(String xpath, int timeOut) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeOut))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-    }
-
     @Test
     @Order(1)
     @DisplayName("Проверка названия блока 'Онлайн пополнение без комиссии'")
     public void blockNameValidationTest() {
-        String blokNameXPath = "//div[@class = 'pay__wrapper']/h2";
         waitForElementToBeVisible(blokNameXPath, 2);
-        WebElement blockName = driver.findElement(By.xpath(blokNameXPath));
+        WebElement blockName = findElement(blokNameXPath);
         Assertions.assertEquals("Онлайн пополнение\n" +
                 "без комиссии", blockName.getText());
     }
@@ -60,19 +59,19 @@ public class TopUpWithoutCommissionTests {
     @Order(2)
     @DisplayName("Проверка наличия логотипов платёжных систем")
     public void paymentSystemsLogoPresenceTest() {
-        String[] logos = new String[]{
-                "//img[@alt='Visa']",
-                "//img[@alt='Verified By Visa']",
-                "//img[@alt='MasterCard']",
-                "//img[@alt='MasterCard Secure Code']",
-                "//img[@alt='Белкарт']"
+
+        By[] logos = new By[]{
+                visaLogo,
+                verifiedByVisaLogo,
+                masterCardSecureCodeLogo,
+                belkart
         };
-        for (String xpathOfLogo : logos) {
+        for (By xpathOfLogo : logos) {
             try {
                 waitForElementToBeVisible(xpathOfLogo, 2);
-                Assertions.assertTrue(driver.findElement(By.xpath(xpathOfLogo)).isDisplayed(), "Логотип не отображается" + " " + xpathOfLogo);
+                Assertions.assertTrue(findElement((xpathOfLogo)).isDisplayed(), "Логотип не отображается" + " " + xpathOfLogo);
             } catch (TimeoutException e) {
-                Assertions.fail("Логотип не найден в течение ожидания: " + xpathOfLogo);
+                Assertions.fail("Логотип не найден в течение ожидания: " + " " + xpathOfLogo);
             }
         }
     }
@@ -81,9 +80,8 @@ public class TopUpWithoutCommissionTests {
     @Order(3)
     @DisplayName("Проверка ссылки на страницу оплаты и безопасности")
     public void serviceLinkTest() {
-        String xPathesOfLink = "//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]";
         waitForElementToBeVisible(xPathesOfLink, 2);
-        driver.findElement(By.xpath(xPathesOfLink)).click();
+        findElement(xPathesOfLink).click();
         Assertions.assertEquals("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/", driver.getCurrentUrl());
     }
 
@@ -91,35 +89,33 @@ public class TopUpWithoutCommissionTests {
     @Order(4)
     @DisplayName("Заполнение полей формы и проверка кнопки 'Продолжить'")
     public void fillFieldsAndVerifyContinueButtonTest() {
-        String phoneNumberXPath = "//input[@placeholder = 'Номер телефона']";
-        String valueXPath = "//input[@placeholder = 'Сумма']";
-        String emailXPath = "//input[@placeholder = 'E-mail для отправки чека']";
-        String buttonContinueXPath = "//button[@Class = 'button button__default ']";
-        String inputPhoneNumber = "297777777";
-        String inputCountOfMoney = "1";
-        String inputEmail = "aksnovich.ivan@gmail.com";
-        waitForElementToBeVisible(phoneNumberXPath, 2);
-        String[] xPathes = new String[]{
-                phoneNumberXPath,
-                valueXPath,
-                emailXPath,
-                buttonContinueXPath
-        };
-        String[] inputData = new String[]{
-                inputPhoneNumber,
-                inputCountOfMoney,
-                inputEmail
-        };
-        WebElement[] inputFields = new WebElement[xPathes.length];
-
-        for (int i = 0; i < inputData.length; i++) {
-            waitForElementToBeVisible(xPathes[i], 2);
-            inputFields[i] = driver.findElement(By.xpath(xPathes[i]));
-            inputFields[i].sendKeys(inputData[i]);
-        }
+        fillInputPlace(phoneNumberXPath, inputPhoneNumber);
+        fillInputPlace(valueXPath, inputCountOfMoney);
+        fillInputPlace(emailXPath, inputEmail);
         checkCookie();
-        WebElement continueButton = driver.findElement(By.xpath(buttonContinueXPath));
-        Assertions.assertTrue(continueButton.isEnabled(), "Кнопка 'Продолжить' должна быть доступна для нажатия.");
-        continueButton.click();
+        Assertions.assertTrue(findElement(buttonContinueXPath).isEnabled(), "Кнопка 'Продолжить' должна быть доступна для нажатия.");
+        findElement(buttonContinueXPath).click();
+    }
+
+    private static void checkCookie() {
+        try {
+            waitForElementToBeVisible(cookieButton, 2);
+            findElement(cookieButton).click();
+        } catch (TimeoutException e) {
+            System.out.println("Cookie не отображаются");
+        }
+    }
+
+    private static void waitForElementToBeVisible(By xpath, int timeOut) {
+        new WebDriverWait(driver, Duration.ofSeconds(timeOut))
+                .until(ExpectedConditions.visibilityOfElementLocated(xpath));
+    }
+
+    private void fillInputPlace(By data, String value) {
+        driver.findElement(data).sendKeys(value);
+    }
+
+    public static WebElement findElement(By xpath) {
+        return driver.findElement(xpath);
     }
 }
