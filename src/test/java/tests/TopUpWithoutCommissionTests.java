@@ -28,12 +28,12 @@ public class TopUpWithoutCommissionTests extends BaseTest {
         topUpPage.checkLink();
     }
 
-    @Test(priority = 4, description = "Заполнение полей формы и проверка кнопки 'Продолжить'")
+    @Test(priority = 4, description = "Заполнение полей формы и проверка кнопки 'Продолжить', проверка всех полей в следующем окне")
     public void fillFieldsAndVerifyContinueButtonTest(){
         topUpPage.fillData();
     }
 
-    @Test(priority = 5, description = "проверка надписей в назаполненных полях каждого варианта оплаты услуг")
+    @Test(priority = 5, description = "проверка надписей в назаполненных полях каждого варианта оплаты услуг: услуги связи, домашний интернет, рассрочка, задолженность")
     public void validateFieldLabelsForEmptyInputsInAllPaymentMethods() {
        topUpPage.checkLabelsForInputs()  ;
     }

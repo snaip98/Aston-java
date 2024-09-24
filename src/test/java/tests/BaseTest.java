@@ -7,6 +7,7 @@ import utils.Browser;
 
 public abstract class BaseTest {
     protected WebDriver driver;
+
     @BeforeClass
     public void setUp() {
         driver = Browser.getDriver();

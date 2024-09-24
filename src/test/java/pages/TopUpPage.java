@@ -11,18 +11,17 @@ public class TopUpPage extends BasePage {
     private final By masterCardSecureCodeLogo = By.xpath("//img[@alt='MasterCard Secure Code']");
     private final By belkart = By.xpath("//img[@alt='Белкарт']");
     private final By xPathesOfLink = By.xpath("//a[@href = '/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/' ]");
-    private final String expectedLink = "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/";
-    private final String expectedName = "Онлайн пополнение\nбез комиссии";
     private final By phoneNumberXPath = By.xpath("//input[@placeholder = 'Номер телефона']");
     private final By valueXPath = By.xpath("//input[@placeholder = 'Сумма']");
     private final By emailXPath = By.xpath("//input[@placeholder = 'E-mail для отправки чека']");
     private final By buttonContinueXPath = By.xpath("//button[@Class = 'button button__default ']");
+    private final By dropDownButton = By.xpath("//button[@class = 'select__header']");
+    private final String expectedLink = "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/";
+    private final String expectedName = "Онлайн пополнение\nбез комиссии";
     private final String phoneNumber = "297777777";
     private final String countOfMoney = "1";
     private final String email = "aksnovich.ivan@gmail.com";
-
     private static String webSiteUrl = "https://www.mts.by/";
-    private final By dropDownButton = By.xpath("//button[@class = 'select__header']");
     private final String placeholder = "placeholder";
     private final String attributeOfPhone = "Номер телефона";
     private final String attributeOfSum = "Сумма";
