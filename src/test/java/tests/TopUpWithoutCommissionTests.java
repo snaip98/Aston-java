@@ -1,30 +1,20 @@
+package tests;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.TopUpPage;
 
-public class TopUpWithoutCommissionTests {
-    private static WebDriver driver;
-    private static TopUpPage topUpPage;
-
-    @BeforeClass
-    public static void setUp() {
-        driver = new ChromeDriver();
-        topUpPage = new TopUpPage(driver);
-    }
+public class TopUpWithoutCommissionTests extends BaseTest {
+    private TopUpPage topUpPage;
 
     @BeforeMethod
     public void openPage() {
-        topUpPage.open();
-    }
-
-    @AfterClass
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        topUpPage = new TopUpPage(driver);
+        topUpPage.openWebSite();
     }
 
     @Test(priority = 1, description = "Проверка названия блока 'Онлайн пополнение без комиссии'")
@@ -45,7 +35,6 @@ public class TopUpWithoutCommissionTests {
     @Test(priority = 4, description = "Заполнение полей формы и проверка кнопки 'Продолжить'")
     public void fillFieldsAndVerifyContinueButtonTest(){
         topUpPage.fillData();
-
     }
 
     @Test(priority = 5, description = "проверка надписей в назаполненных полях каждого варианта оплаты услуг")

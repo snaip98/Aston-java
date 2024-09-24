@@ -1,16 +1,11 @@
+package pages;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.time.Duration;
-
-public class TopUpPage {
+public class TopUpPage extends BasePage {
     private final By blokNameXPath = By.xpath("//div[@class = 'pay__wrapper']/h2");
-    private final By cookieButton = By.xpath("//button[@class = 'btn btn_black cookie__ok']");
     private final By visaLogo = By.xpath("//img[@alt='Visa']");
     private final By verifiedByVisaLogo = By.xpath("//img[@alt='Verified By Visa']");
     private final By masterCardSecureCodeLogo = By.xpath("//img[@alt='MasterCard Secure Code']");
@@ -25,13 +20,9 @@ public class TopUpPage {
     private final String phoneNumber = "297777777";
     private final String countOfMoney = "1";
     private final String email = "aksnovich.ivan@gmail.com";
-    private WebDriver driver;
-    private WebDriverWait wait;
+
     private static String webSiteUrl = "https://www.mts.by/";
     private final By dropDownButton = By.xpath("//button[@class = 'select__header']");
-    private final By placeHolderPhone = By.xpath("//input[@placeholder='Номер телефона']");
-    private final By placeHolderSum = By.xpath("//input[@class = 'total_rub']");
-    private final By placeHolderEmail = By.xpath("//input[@class = 'email']");
     private final String placeholder = "placeholder";
     private final String attributeOfPhone = "Номер телефона";
     private final String attributeOfSum = "Сумма";
@@ -43,7 +34,7 @@ public class TopUpPage {
     private final By buttonHomeInternet = By.xpath("//p[text() = 'Домашний интернет']");
     private final By buttonInstallment = By.xpath("//p[text() = 'Рассрочка']");
     private final By buttonDebtDue = By.xpath("//p[text() = 'Задолженность']");
-    private final By placeHolderPhoneOfHomeEnternet = By.xpath("//input[@id= 'internet-phone']");
+    private final By placeHolderPhoneOfHomeEnternet = By.xpath("//input[@placeholder = 'Номер абонента']");
     private final By placeHolderSumOfHomeEnternet = By.xpath("//input[@id =  'internet-sum']");
     private final By placeHolderEmailOfHomeEnternet = By.xpath("//input[@id =  'internet-email']");
     private final By placeHolderAccountNumberOfInstallment = By.xpath("//input[@id= 'score-instalment']");
@@ -72,8 +63,7 @@ public class TopUpPage {
     private final By logoBePayMir = By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/div/img[1]");
 
     public TopUpPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        super(driver);
     }
 
     public void fillData() {
@@ -97,15 +87,6 @@ public class TopUpPage {
 
     }
 
-    private void checkText(By locator, String expText) {
-        waitElement(locator);
-        Assert.assertEquals(findElement(locator).getText(), expText);
-    }
-
-    private void fillInput(By data, String value) {
-        findElement(data).sendKeys(value);
-    }
-
     public void clickContinueButton() {
         findElement(buttonContinueXPath).click();
     }
@@ -114,36 +95,13 @@ public class TopUpPage {
         iteratorLogo(new By[]{visaLogo, verifiedByVisaLogo, masterCardSecureCodeLogo, belkart});
     }
 
-    private void iteratorLogo(By[] logos) {
-        for (By locator : logos) {
-            try {
-                waitElement(locator);
-                Assert.assertTrue(findElement(locator).isDisplayed(), "Логотип не отображается" + logos.toString());
-            } catch (TimeoutException e) {
-                Assert.fail("Логотип не найден в течении ожидания: " + logos.toString());
-            }
-        }
-    }
 
-    public void checkCookie() {
-        try {
-            waitElement(cookieButton);
-            findElement(cookieButton).click();
-
-        } catch (TimeoutException e) {
-            System.out.println("Cookie не обнаружены");
-        }
-    }
-
-    private void waitElement(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
 
     public void getTextOfNameBlok() {
         checkText(blokNameXPath, expectedName);
     }
 
-    public void open() {
+    public void openWebSite() {
         driver.get(webSiteUrl);
         checkCookie();
     }
@@ -155,12 +113,13 @@ public class TopUpPage {
     }
 
     public void checkLabelsForInputs() {
-        waitElement(placeHolderPhone);
-        checkPlaceHolder(placeHolderPhone, attributeOfPhone);
-        checkPlaceHolder(placeHolderSum, attributeOfSum);
-        checkPlaceHolder(placeHolderEmail, attributeOfEmail);
+
+        checkPlaceHolder(phoneNumberXPath, attributeOfPhone);
+        checkPlaceHolder(valueXPath, attributeOfSum);
+        checkPlaceHolder(emailXPath, attributeOfEmail);
 
         selectOptionFromDropdown(buttonHomeInternet);
+        waitElement(placeHolderPhoneOfHomeEnternet);
         checkPlaceHolder(placeHolderPhoneOfHomeEnternet, attributeOfPhoneSubscriber);
         checkPlaceHolder(placeHolderSumOfHomeEnternet, attributeOfSum);
         checkPlaceHolder(placeHolderEmailOfHomeEnternet, attributeOfEmail);
@@ -183,10 +142,6 @@ public class TopUpPage {
 
     public void selectOptionFromDropdown(By locator) {
         findElement(dropDownButton).click();
-        findElement(locator);
-    }
-
-    public WebElement findElement(By xpath) {
-        return driver.findElement(xpath);
+        findElement(locator).click();
     }
 }

@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test name="PageObgect">
         <classes>
-            <class name="TopUpWithoutCommissionTests"/>
+            <class name="tests.TopUpWithoutCommissionTests"/>
         </classes>
     </test>
 </suite>
