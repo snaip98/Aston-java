@@ -56,16 +56,16 @@ public class TopUpPage extends BasePage {
     private final String phoneNumberBePayTextPhone = "Оплата: Услуги связи Номер:375297777777";
     private final By sumBePay = By.xpath("//div[@class = 'pay-description__cost']//span");
     private final String sumBePayTextPhone = "1.00 BYN";
-    private final By logoBePayVisa = By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/img[1]");
-    private final By logoBePayMC = By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/div/img[1]");
-    private final By logoBePayBelkart = By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/div/img[1]");
-    private final By logoBePayMir = By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/div/img[1]");
+    private final By logoBePayVisa = By.xpath("//img[@src = 'assets/images/payment-icons/card-types/visa-system.svg']");
+    private final By logoBePayMC = By.xpath("//img[@src = 'assets/images/payment-icons/card-types/mastercard-system.svg']");
+    private final By logoBePayBelkart = By.xpath("//img[@src = 'assets/images/payment-icons/card-types/belkart-system.svg']");
+    private final By logoBePayMir = By.xpath("//img[@src = 'assets/images/payment-icons/card-types/maestro-system.svg']");
 
     public TopUpPage(WebDriver driver) {
         super(driver);
     }
 
-    public void fillData() {
+    public void fillDataAndCheckFieldsAndLogos() {
         waitElement(phoneNumberXPath);
         fillInput(phoneNumberXPath, phoneNumber);
         fillInput(valueXPath, countOfMoney);
@@ -102,7 +102,6 @@ public class TopUpPage extends BasePage {
     }
 
     public void checkLink() {
-        waitElement(xPathesOfLink);
         findElement(xPathesOfLink).click();
         Assert.assertEquals(expectedLink, driver.getCurrentUrl());
     }
@@ -114,7 +113,6 @@ public class TopUpPage extends BasePage {
         checkPlaceHolder(emailXPath, attributeOfEmail);
 
         selectOptionFromDropdown(buttonHomeInternet);
-        waitElement(placeHolderPhoneOfHomeEnternet);
         checkPlaceHolder(placeHolderPhoneOfHomeEnternet, attributeOfPhoneSubscriber);
         checkPlaceHolder(placeHolderSumOfHomeEnternet, attributeOfSum);
         checkPlaceHolder(placeHolderEmailOfHomeEnternet, attributeOfEmail);

@@ -15,7 +15,7 @@ public abstract class BasePage {
     protected WebDriverWait wait;
     protected final By cookieButton = By.xpath("//button[@class = 'btn btn_black cookie__ok']");
 
-    public BasePage(WebDriver driver){
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
