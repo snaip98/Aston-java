@@ -82,9 +82,7 @@ public class TopUpPage extends BasePage {
         checkText(buttonPay, buttonPayExpectedText);
         checkText(cardNumber, cardNumberExpectedText);
         checkText(sumBePay, sumBePayTextPhone);
-
         iteratorLogo(new By[]{logoBePayVisa, logoBePayMC, logoBePayBelkart, logoBePayMir});
-
     }
 
     public void clickContinueButton() {
@@ -94,8 +92,6 @@ public class TopUpPage extends BasePage {
     public void checkLogo() {
         iteratorLogo(new By[]{visaLogo, verifiedByVisaLogo, masterCardSecureCodeLogo, belkart});
     }
-
-
 
     public void getTextOfNameBlok() {
         checkText(blokNameXPath, expectedName);
