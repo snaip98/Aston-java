@@ -15,6 +15,18 @@ public class PostmanCollectionEchoTest {
     }
 
     @Test
+    public void getRequestWoopsTest() {
+        Response response =
+                given()
+                        .when().get("/get?foo1=bar1&foo2=bar2")
+                        .then().log().body()
+                        .extract().response();
+        Assertions.assertEquals(response.getStatusCode(), 200);
+        Assertions.assertEquals(response.jsonPath().getString("args.foo1"), "bar1");
+        Assertions.assertEquals(response.jsonPath().getString("args.foo2"), "bar2");
+    }
+
+    @Test
     public void getRequestTest() {
         Response response =
                 given()
