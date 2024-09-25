@@ -75,13 +75,16 @@ public class PostmanCollectionEchoTest {
 
     @Test
     public void deleteRequestTest() {
+        String responseBody = "This is expected to be sent back as part of response body.";
         Response response =
                 given()
+                        .body(responseBody)
                         .when()
                         .delete("/delete")
                         .then().log().body()
                         .extract().response();
         Assertions.assertEquals(200, response.getStatusCode());
-        Assertions.assertEquals("[:]", response.jsonPath().getString("data"));
+        Assertions.assertEquals(responseBody, response.jsonPath().getString("data"));
+
     }
 }
