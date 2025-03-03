@@ -16,6 +16,7 @@ public class MapOfUniqueStringsWithCountsFromArray {
 
     private void fillMap(String[] words) {
         for (String word : words) {
+            System.out.println();
             stringCountMap.put(word, stringCountMap.getOrDefault(word, 0) + 1);
         }
     }
